@@ -1,18 +1,26 @@
 #include <Arduino.h>
+#include <stdio.h>
+#include "pico/stdlib.h"
 
-// put function declarations here:
-int myFunction(int, int);
+int main() {
 
-void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
-}
+    const uint led_pin = 25;
 
-void loop() {
-  // put your main code here, to run repeatedly:
-}
+    // Initialize LED pin
+    gpio_init(led_pin);
+    gpio_set_dir(led_pin, GPIO_OUT);
 
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+    // Initialize chosen serial port
+    stdio_init_all();
+
+    // Loop forever
+    while (true) {
+
+        // Blink LED
+        printf("Blinking!\r\n");
+        gpio_put(led_pin, true);
+        sleep_ms(1000);
+        gpio_put(led_pin, false);
+        sleep_ms(1000);
+    }
 }
