@@ -1,18 +1,22 @@
 #include <Arduino.h>
-
-// put function declarations here:
-int myFunction(int, int);
+#include <LoadCell.h>
+#include <State.h>
 
 void setup() {
-  // put your setup code here, to run once:
-  int result = myFunction(2, 3);
+  Serial.begin(115200);
+  LoadCell1_ini();
+}
+void setup1()
+{
+    pinMode(LED_BUILTIN, OUTPUT);
+    LedState(10);
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  Serial.println(LoadCell1_data());
+  delay(1000);
 }
-
-// put function definitions here:
-int myFunction(int x, int y) {
-  return x + y;
+void loop1()
+{
+    LedState(5);
 }
